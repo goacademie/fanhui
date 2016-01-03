@@ -1,7 +1,7 @@
 Package.describe({
-  name: 'pntbr:insei',
+  name: 'pntbr:slack-inseis',
   version: '0.0.1',
-  summary: 'Manage Insei',
+  summary: 'Manage Inseis',
   git: 'https://github.com/goacademie/fanhui',
   documentation: 'README.md'
 })
@@ -12,7 +12,7 @@ Package.onUse(function(api) {
   api.use(['iron:router', 'templating'], 'client')
   api.addFiles('collection.js')
   api.addFiles([
-    'server/insei.js',
+    'server/slack-inseis.js',
     'server/slack-token.js',
     'server/record-slack-inseis.js',
     'server/model.js'
@@ -23,18 +23,17 @@ Package.onUse(function(api) {
     'client/list-inseis.html',
     'client/list-inseis.js'
   ], 'client')
-  api.export(['Inseis', 'Insei'], 'server')
+  api.export(['SlackInseis', 'Inseis'], 'server')
   api.export([
-    'Inseis',
     'isInsei',
     'isSensei',
-    'nickSlackFromUrl'
+    'getInseiBySlackName',
+    'slackNameFromUrl'
   ], 'client')
 })
 Package.onTest(function(api) {
   api.use(['ecmascript', 'tinytest'])
   api.use(['iron:router@1.0.0', 'templating'], 'client')
-  api.use('pntbr:insei')
-  api.addFiles('tests-stubs.js')
-  api.addFiles('tests-insei.js')
+  api.use('pntbr:slack-inseis')
+  api.addFiles(['tests-stubs.js', 'tests-insei.js'])
 })
